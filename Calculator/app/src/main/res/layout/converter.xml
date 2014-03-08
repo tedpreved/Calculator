@@ -17,11 +17,13 @@
         android:id="@+id/linearLayout">
 
         <Button
+            android:clickable="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="CALCULATOR"
             android:id="@+id/Calc"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            />
 
         <Button
             android:layout_width="wrap_content"

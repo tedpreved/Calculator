@@ -27,14 +27,11 @@ public class Converter extends Activity {
             @Override
             public void onClick(View v) {
                 switch(v.getId()){
-                    case R.id.Conv:
-                        Intent inti=new Intent(getApplicationContext(),Converter.class);
-                        startActivity(inti);
-                        break;
-                    case R.id.Calc:
-                        Intent intit=new Intent(getApplicationContext(),MainActivity.class);
-                        startActivity(intit);
-                        break;
+                    case R.id.Calc:{
+                        finish();
+                        Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+                        startActivity(intent);
+                        break;}
 
                     default:
                         break;

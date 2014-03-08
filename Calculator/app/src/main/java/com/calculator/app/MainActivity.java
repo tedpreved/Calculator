@@ -15,8 +15,8 @@ public class MainActivity extends Activity {
                 TextView Box;
 
 
-               public static double first=1;
-               public static double second=1;
+               public static double first=0;
+               public static double second=0;
 
 
     @Override
@@ -24,9 +24,9 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-            Calc=(Button) findViewById(R.id.Calc);
-            Conv=(Button) findViewById(R.id.Conv);
-            Box=(TextView)findViewById(R.id.Box);
+        Calc=(Button) findViewById(R.id.Calc);
+        Conv=(Button) findViewById(R.id.Conv);
+        Box=(TextView)findViewById(R.id.Box);
 
 
         btn0=(Button)findViewById(R.id.btn0);
@@ -50,24 +50,24 @@ public class MainActivity extends Activity {
         btnMin=(Button)findViewById(R.id.btnMin);
         btnDot=(Button)findViewById(R.id.btnDot);
 
+
         View.OnClickListener btnList = new View.OnClickListener() {
             public  int temp;
+            public  int check;
             @Override
 
 
             public void onClick(View v) {
 
                 switch(v.getId()){
-                    case R.id.Conv:
-                        Intent intentConverter=new Intent(getApplicationContext(),Converter.class);
-                        startActivity(intentConverter);
-                        break;
-                    case R.id.Calc:
-                        Intent intentCalculator=new Intent(getApplicationContext(),MainActivity.class);
-                        startActivity(intentCalculator);
-                        break;
+                    case R.id.Conv:{
+                        finish();
+                        Intent intent=new Intent(getApplicationContext(),Converter.class);
+                        startActivity(intent);
+                        break;}
                     case R.id.btn0:
-                        Box.setText(Box.getText()+"0");
+                        if((Box.getText().length()==1)&(Box.getText().toString().contains("0"))){
+                         } else {Box.setText(Box.getText()+"0");};
                         break;
                     case R.id.btn1:
                         Box.setText(Box.getText()+"1");
@@ -97,14 +97,22 @@ public class MainActivity extends Activity {
                         Box.setText(Box.getText()+"9");
                         break;
                     case R.id.btnDot:
-                        Box.setText(Box.getText()+".");
+
+                        if(Box.getText().length()!=0){
+                        if(Box.getText().toString().contains(".")){
+                            } else {Box.setText(Box.getText()+".");
+                        };
+                        };
+
                         break;
                     case R.id.btnClear:
-                        CharSequence Buff =Box.getText();
-                        Box.setText(Buff.subSequence(0,(Box.getText().length()-1)));
+                            CharSequence Buff =Box.getText();
+                            if(Box.getText().length()<1){ Box.setText("1");};
+                            Box.setText(Buff.subSequence(0,(Box.getText().length()-1)));
                         break;
                     case R.id.btnDel:
                         Box.setText(null);
+                        check=0;
                         break;
                     case R.id.btnMul:
                         first=Double.valueOf(Box.getText().toString());
@@ -129,20 +137,53 @@ public class MainActivity extends Activity {
                     case R.id.btnAns:
                         switch (temp){
                             case 1:
-                                second=Double.valueOf(Box.getText().toString());
-                                Box.setText(String.valueOf((second*first)));
+                                if(check==0){
+                                    second=Double.valueOf(Box.getText().toString());
+                                    Box.setText(String.valueOf((first*second)));
+                                    first=first*second;
+                                    check=1;
+                            } else {
+                                    Box.setText(String.valueOf((first*second)));
+                                    first=first*second;
+                                    check=1;
+                                };
                                 break;
                             case 2:
-                                second=Double.valueOf(Box.getText().toString());
-                                Box.setText(String.valueOf((first/second)));
+                                if(check==0){
+                                    second=Double.valueOf(Box.getText().toString());
+                                    Box.setText(String.valueOf((first/second)));
+                                    first=first/second;
+                                    check=1;
+                                } else {
+                                    Box.setText(String.valueOf((first/second)));
+                                    first=first/second;
+                                    check=1;
+                                };
                                 break;
                             case 3:
-                                second=Double.valueOf(Box.getText().toString());
-                                Box.setText(String.valueOf((first+second)));
+                                if(check==0){
+                                    second=Double.valueOf(Box.getText().toString());
+                                    Box.setText(String.valueOf(first+second));
+                                    first=first+second;
+                                    check=1;
+                                } else {
+                                    Box.setText(String.valueOf(first+second));
+                                    first=first+second;
+
+                                    check=1;
+                                };
                                 break;
                             case 4:
-                                second=Double.valueOf(Box.getText().toString());
-                                Box.setText(String.valueOf((first-second)));
+                                if(check==0){
+                                    second=Double.valueOf(Box.getText().toString());
+                                    Box.setText(String.valueOf((first-second)));
+                                    first=first-second;
+                                    check=1;
+                                } else {
+                                    Box.setText(String.valueOf((first-second)));
+                                    first=first-second;
+                                    check=1;
+                                };
                                 break;
                             default:
                             break;
@@ -158,7 +199,6 @@ public class MainActivity extends Activity {
         };
 
         Conv.setOnClickListener(btnList);
-        Calc.setOnClickListener(btnList);
 
         btn0.setOnClickListener(btnList);
         btn1.setOnClickListener(btnList);
