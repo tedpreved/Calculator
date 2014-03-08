@@ -19,7 +19,10 @@
     <string name="btn8">8</string>
     <string name="btn9">9</string>
 
-    <string name="btnCalc">Калькулятор</string>
-    <string name="btnConv">Конвертер</string><string name="btnMul">*</string>
+
+    <string name="btnMul">*</string>
+
+    <string name="text_tab1">Калькулятор</string>
+    <string name="text_tab2">Конвертер</string>
 
 </resources>

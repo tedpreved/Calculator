@@ -20,6 +20,13 @@
     <string name="btn9">9</string>
 
     <string name="btnCalc">Calculator</string>
-    <string name="btnConv">Converter</string><string name="btnMul">*</string>
+    <string name="btnConv">Converter</string>
+    <string name="btnMul">*</string>
+
+
+
+    <string name="text_tab1">Calculator</string>
+    <string name="text_tab2">Converter</string>
+
 
 </resources>

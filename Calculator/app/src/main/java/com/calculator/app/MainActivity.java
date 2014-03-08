@@ -1,15 +1,15 @@
 package com.calculator.app;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TabHost;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
-                Button Calc,Conv;
+
                 Button btn0,btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9;
                 Button btnDiv,btnMul,btnDel,btnClear,btnAns,btnDot,btnPlus,btnMin;
                 TextView Box;
@@ -20,12 +20,36 @@ public class MainActivity extends Activity {
 
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        double i=Double.valueOf(Box.getText().toString());
+
+        if(i!=0){Box.setText(String.valueOf(i));}
+
+    }
+
+
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        Calc=(Button) findViewById(R.id.Calc);
-        Conv=(Button) findViewById(R.id.Conv);
+
+        TabHost tabHost=(TabHost)findViewById(R.id.tabHost);
+        tabHost.setup();
+
+        TabHost.TabSpec tabSpec;
+        tabSpec = tabHost.newTabSpec("tag1");
+        tabSpec.setIndicator("Калькулятор");
+        tabSpec.setContent(R.id.tab1);
+        tabHost.addTab(tabSpec);
+
+        tabSpec = tabHost.newTabSpec("tag2");
+        tabSpec.setIndicator("Converter", getResources().getDrawable(R.drawable.tab_icon_selector));
+        tabSpec.setContent(R.id.tab2);
+        tabHost.addTab(tabSpec);
+
         Box=(TextView)findViewById(R.id.Box);
 
 
@@ -60,14 +84,9 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
 
                 switch(v.getId()){
-                    case R.id.Conv:{
-                        finish();
-                        Intent intent=new Intent(getApplicationContext(),Converter.class);
-                        startActivity(intent);
-                        break;}
                     case R.id.btn0:
-                        if((Box.getText().length()==1)&(Box.getText().toString().contains("0"))){
-                         } else {Box.setText(Box.getText()+"0");};
+                        if((Box.getText().length()==1)&(Box.getText().toString().contains("0"))==true){
+                         } else {Box.setText(Box.getText()+"0");}
                         break;
                     case R.id.btn1:
                         Box.setText(Box.getText()+"1");
@@ -99,7 +118,7 @@ public class MainActivity extends Activity {
                     case R.id.btnDot:
 
                         if(Box.getText().length()!=0){
-                        if(Box.getText().toString().contains(".")){
+                        if(Box.getText().toString().contains(".")==true){
                             } else {Box.setText(Box.getText()+".");
                         };
                         };
@@ -107,7 +126,7 @@ public class MainActivity extends Activity {
                         break;
                     case R.id.btnClear:
                             CharSequence Buff =Box.getText();
-                            if(Box.getText().length()<1){ Box.setText("1");};
+                            if(Box.getText().length()<1){ Box.setText("1");}
                             Box.setText(Buff.subSequence(0,(Box.getText().length()-1)));
                         break;
                     case R.id.btnDel:
@@ -146,7 +165,7 @@ public class MainActivity extends Activity {
                                     Box.setText(String.valueOf((first*second)));
                                     first=first*second;
                                     check=1;
-                                };
+                                }
                                 break;
                             case 2:
                                 if(check==0){
@@ -158,7 +177,7 @@ public class MainActivity extends Activity {
                                     Box.setText(String.valueOf((first/second)));
                                     first=first/second;
                                     check=1;
-                                };
+                                }
                                 break;
                             case 3:
                                 if(check==0){
@@ -171,7 +190,7 @@ public class MainActivity extends Activity {
                                     first=first+second;
 
                                     check=1;
-                                };
+                                }
                                 break;
                             case 4:
                                 if(check==0){
@@ -183,7 +202,7 @@ public class MainActivity extends Activity {
                                     Box.setText(String.valueOf((first-second)));
                                     first=first-second;
                                     check=1;
-                                };
+                                }
                                 break;
                             default:
                             break;
@@ -198,7 +217,6 @@ public class MainActivity extends Activity {
             }
         };
 
-        Conv.setOnClickListener(btnList);
 
         btn0.setOnClickListener(btnList);
         btn1.setOnClickListener(btnList);

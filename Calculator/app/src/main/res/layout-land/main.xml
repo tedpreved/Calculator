@@ -55,9 +55,8 @@
         android:layout_alignWithParentIfMissing="false"
         android:baselineAligned="false"
         android:id="@+id/tableLayout"
-        android:layout_marginLeft="102dp"
         android:layout_below="@+id/Box"
-        android:layout_alignParentLeft="true">
+        android:layout_toRightOf="@+id/space">
 
         <TableRow
             android:layout_width="fill_parent"
@@ -267,6 +266,14 @@
             android:layout_below="@+id/linearLayout3"
             android:layout_toRightOf="@+id/tableLayout" />
     </LinearLayout>
+
+    <Space
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:layout_alignTop="@+id/tableLayout"
+        android:layout_alignBottom="@+id/tableLayout"
+        android:id="@+id/space"
+        android:layout_alignParentLeft="true" />
 
 
 </RelativeLayout>
