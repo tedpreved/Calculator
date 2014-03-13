@@ -25,4 +25,13 @@
     <string name="text_tab1">Калькулятор</string>
     <string name="text_tab2">Конвертер</string>
 
+    <sring-array name="weight-list">
+        <item>карат</item>
+        <item>грамм</item>
+        <item>унция</item>
+        <item>пунция</item>
+        <item>килограмм</item>
+        <item>тонна</item>
+    </sring-array>
+
 </resources>

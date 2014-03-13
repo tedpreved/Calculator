@@ -29,4 +29,19 @@
     <string name="text_tab2">Converter</string>
 
 
+    <string name="frag1_text">Fragment 1</string>
+    <string name="frag2_text">Fragment 2</string>
+    <string name="log">Log</string>
+    <string name="find">Find</string>
+
+
+    <sring-array name="maslist">
+        <item>carat</item>
+        <item>gram</item>
+        <item>ounce</item>
+        <item>pound</item>
+        <item>kg</item>
+        <item>tona</item>
+    </sring-array>
+
 </resources>

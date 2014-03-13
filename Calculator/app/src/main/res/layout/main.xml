@@ -48,7 +48,7 @@
                         android:layout_alignParentLeft="true"
                         android:editable="true"
                         android:enabled="true"
-                        android:gravity="right" />
+                        android:gravity="right"/>
 
                     <TableLayout
                         android:layout_width="wrap_content"
@@ -69,7 +69,7 @@
                                 android:layout_height="60dp"
                                 android:text="@string/btn7"
                                 android:id="@+id/btn7"
-                                android:layout_column="0" />
+                                android:layout_column="0"/>
 
                             <Button
                                 android:layout_width="60dp"
@@ -226,14 +226,19 @@
                     </LinearLayout>
                     </RelativeLayout>
 
-                <RelativeLayout
+               <RelativeLayout
                     android:id="@+id/tab2"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent">
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <fragment
+                        android:id="@+id/fragment1"
+                        android:name="com.calculator.app.Fragment1"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/app_name"/>
+                        android:layout_weight="1"
+                        tools:layout="@layout/fragment1">
+
+                        </fragment>
                     </RelativeLayout>
             </FrameLayout>
         </LinearLayout>

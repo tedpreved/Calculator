@@ -36,6 +36,9 @@ public class MainActivity extends Activity {
         setContentView(R.layout.main);
 
 
+
+
+
         TabHost tabHost=(TabHost)findViewById(R.id.tabHost);
         tabHost.setup();
 
@@ -46,9 +49,13 @@ public class MainActivity extends Activity {
         tabHost.addTab(tabSpec);
 
         tabSpec = tabHost.newTabSpec("tag2");
-        tabSpec.setIndicator("Converter", getResources().getDrawable(R.drawable.tab_icon_selector));
+        tabSpec.setIndicator("Converter");
         tabSpec.setContent(R.id.tab2);
         tabHost.addTab(tabSpec);
+
+        tabHost.setCurrentTabByTag("tag2");
+
+
 
         Box=(TextView)findViewById(R.id.Box);
 
@@ -238,5 +245,10 @@ public class MainActivity extends Activity {
         btnDiv.setOnClickListener(btnList);
         btnPlus.setOnClickListener(btnList);
         btnMin.setOnClickListener(btnList);
+
+
+
+//----------------------------Create Layout for Converter-----------------------------------
+
     }
 }
