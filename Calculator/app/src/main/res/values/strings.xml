@@ -38,13 +38,13 @@
     <string name="find">Find</string>
 
 
-    <sring-array name="maslist">
+    <string-array name="mas_list">
         <item>carat</item>
         <item>gram</item>
         <item>ounce</item>
         <item>pound</item>
         <item>kg</item>
         <item>tona</item>
-    </sring-array>
+    </string-array>
 
 </resources>

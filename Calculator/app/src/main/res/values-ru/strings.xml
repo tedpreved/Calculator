@@ -5,8 +5,8 @@
     <string name="app_name">Калькулятор</string>
     <string name="action_settings">Насйтройки</string>
     <string name="title_activity_converter">Конвертер</string>
-    <srting name="calculator">Калькулятор</srting>
-    <srting name="converter">Конвертер</srting>
+    <string name="calculator">Калькулятор</string>
+    <string name="converter">Конвертер</string>
 
     <string name="btn0">0</string>
     <string name="btn1">1</string>
@@ -25,13 +25,13 @@
     <string name="text_tab1">Калькулятор</string>
     <string name="text_tab2">Конвертер</string>
 
-    <sring-array name="weight-list">
+    <string-array name="mas_list">
         <item>карат</item>
         <item>грамм</item>
         <item>унция</item>
         <item>пунция</item>
         <item>килограмм</item>
         <item>тонна</item>
-    </sring-array>
+    </string-array>
 
 </resources>

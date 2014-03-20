@@ -6,66 +6,59 @@ package com.calculator.app;
 
 public class Convertor {
 
-    final  static double[] mas={1,1000,1000};
+	final static double[] mas = { 1, 1000, 1000 };
 
-    public static String convert(int number1,int number2,String first, String second,boolean chek){
+	public static String convert(int number1, int number2, String first,
+			String second, boolean chek) {
 
-            String answer=null;
-            double ans=0;
+		String answer = null;
+		double ans = 0;
 
-            double a=Double.valueOf(first);
-            double b=Double.valueOf(second);
+		double a = Double.valueOf(first);
+		double b = Double.valueOf(second);
 
+		if (number1 != number2) {
 
+			if (chek) {
+				ans = b;
 
+				if (number1 > number2) {
 
-            if(number1!=number2){
+					for (int i = number1; number2 <= i; i--)
+						ans /= mas[i];
 
+				} else {
 
-                if (chek){
-                    ans=b;
+					for (int i = number1; i <= number2; i++)
+						ans *= mas[i];
+				}
 
-                    if (number1>number2){
+			} else {
 
-                        for(int i=number1;number2<=i;i--)
-                            ans/=mas[i];
+				ans = a;
+				if (number1 < number2) {
 
+					for (int i = number1; number2 <= i; i--)
+						ans /= mas[i];
 
-                    } else {
+				} else {
 
-                        for(int i=number1;i<=number2;i++)
-                            ans*=mas[i];
-                    }
+					for (int i = number1; i <= number2; i++)
+						ans *= mas[i];
+				}
+			}
 
-                } else{
+		} else {
+			if (chek) {
+				ans = b;
+			} else {
+				ans = a;
+			}
 
-                    ans=a;
-                    if (number1<number2){
+		}
 
-                        for(int i=number1;number2<=i;i--)
-                            ans/=mas[i];
-
-                    } else {
-
-                        for(int i=number1;i<=number2;i++)
-                            ans*=mas[i];
-                    }
-                }
-
-
-
-            } else {
-                if (chek){
-                    ans=b;} else {ans=a;}
-
-
-            }
-
-
-
-
-            answer=Double.toString(ans);
-        return answer;
-    }
+		answer = Double.toString(ans);
+		return answer;
+	}
 
 }

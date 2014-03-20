@@ -1,39 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
     <Space
         android:layout_width="match_parent"
         android:layout_height="50dp" />
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="350dp"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:baselineAligned="false"
-        android:layout_gravity="center_horizontal">
+        android:orientation="horizontal" >
 
         <EditText
             android:id="@+id/CBox1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:ems="10"
             android:layout_weight="2"
-            android:gravity="right" />
+            android:ems="10"
+            android:gravity="right"
+            android:inputType="numberDecimal" />
 
         <Spinner
             android:id="@+id/spinner"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="1"
-            />
+            android:layout_weight="1" />
     </LinearLayout>
 
     <Space
@@ -41,52 +37,52 @@
         android:layout_height="50dp" />
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal" >
 
         <ImageButton
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
             android:id="@+id/buttonUP"
-            android:src="@android:drawable/arrow_up_float"/>
-
-        <ImageButton
             android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:src="@android:drawable/arrow_up_float" />
+
+        <ImageButton
             android:id="@+id/buttonDOWN"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
             android:src="@android:drawable/arrow_down_float" />
     </LinearLayout>
 
     <Space
+        android:id="@+id/space"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/space" />
+        android:layout_height="50dp" />
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:id="@+id/linearLayout"
         android:layout_width="350dp"
         android:layout_height="match_parent"
-        android:baselineAligned="false"
         android:layout_gravity="center_horizontal"
-        android:id="@+id/linearLayout">
+        android:baselineAligned="false"
+        android:orientation="horizontal" >
 
         <EditText
             android:id="@+id/CBox.2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:ems="10"
             android:layout_weight="2"
-            android:gravity="right" />
+            android:ems="10"
+            android:gravity="right"
+            android:inputType="numberDecimal" />
 
         <Spinner
             android:id="@+id/spinner2"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
     </LinearLayout>
 
 </LinearLayout>
