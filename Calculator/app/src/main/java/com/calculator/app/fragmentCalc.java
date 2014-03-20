@@ -1,126 +1,46 @@
 package com.calculator.app;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.view.Menu;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivity extends Activity implements ActionBar.TabListener {
-
-
-                Button btn0,btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9;
-                Button btnDiv,btnMul,btnDel,btnClear,btnAns,btnDot,btnPlus,btnMin;
-                TextView Box;
-
-
-               public static double first=0;
-               public static double second=0;
-
-
-
-               private static final String STATE_SELECTED_NAVIGATION_ITEM = "selected_navigation_item";
-
-
-
-
+/**
+ * Created by Monstr on 20.03.14.
+ */
+public class FragmentCalc extends Fragment {
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        double i=Double.valueOf(Box.getText().toString());
-
-        if(i!=0){Box.setText(String.valueOf(i));}
-
-        outState.putInt(STATE_SELECTED_NAVIGATION_ITEM, getActionBar().getSelectedNavigationIndex());
-
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-
-        if (savedInstanceState.containsKey(STATE_SELECTED_NAVIGATION_ITEM)) {
-            getActionBar().setSelectedNavigationItem(savedInstanceState.getInt(STATE_SELECTED_NAVIGATION_ITEM));
-        }
-    }
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragmentcalc, null);
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        return super.onCreateOptionsMenu(menu);
-
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+               final TextView Box=(TextView)v.findViewById(R.id.Box);
 
 
+                Button  btn0=(Button)v.findViewById(R.id.btn0);
+                Button btn1=(Button)v.findViewById(R.id.btn1);
+                Button btn2=(Button)v.findViewById(R.id.btn2);
+                Button btn3=(Button)v.findViewById(R.id.btn3);
+                Button btn4=(Button)v.findViewById(R.id.btn4);
+                Button btn5=(Button)v.findViewById(R.id.btn5);
+                Button btn6=(Button)v.findViewById(R.id.btn6);
+                Button btn7=(Button)v.findViewById(R.id.btn7);
+                Button btn8=(Button)v.findViewById(R.id.btn8);
+                Button btn9=(Button)v.findViewById(R.id.btn9);
 
-        final ActionBar actionBar = getActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
-
-        actionBar.addTab(actionBar.newTab().setText(R.string.title_section1)
-                .setTabListener(this));
-        actionBar.addTab(actionBar.newTab().setText(R.string.title_section2)
-                .setTabListener(this));
-
-
-
-
-
-        /*TabHost tabHost=(TabHost)findViewById(R.id.tabHost);
-        tabHost.setup();
-
-        TabHost.TabSpec tabSpec;
-        tabSpec = tabHost.newTabSpec("tag1");
-        tabSpec.setIndicator("Калькулятор");
-        tabSpec.setContent(R.id.tab1);
-        tabHost.addTab(tabSpec);
-
-        tabSpec = tabHost.newTabSpec("tag2");
-        tabSpec.setIndicator("Converter");
-        tabSpec.setContent(R.id.tab2);
-        tabHost.addTab(tabSpec);
-
-        tabHost.setCurrentTabByTag("tag2");
-
-
-
-
-
-        Box=(TextView)findViewById(R.id.Box);
-
-
-        btn0=(Button)findViewById(R.id.btn0);
-        btn1=(Button)findViewById(R.id.btn1);
-        btn2=(Button)findViewById(R.id.btn2);
-        btn3=(Button)findViewById(R.id.btn3);
-        btn4=(Button)findViewById(R.id.btn4);
-        btn5=(Button)findViewById(R.id.btn5);
-        btn6=(Button)findViewById(R.id.btn6);
-        btn7=(Button)findViewById(R.id.btn7);
-        btn8=(Button)findViewById(R.id.btn8);
-        btn9=(Button)findViewById(R.id.btn9);
-
-        btnDiv=(Button)findViewById(R.id.btnDiv);
-        btnMul=(Button)findViewById(R.id.btnMul);
-        btnAns=(Button)findViewById(R.id.btnAns);
-        btnDot=(Button)findViewById(R.id.btnDot);
-        btnDel=(Button)findViewById(R.id.btnDel);
-        btnClear=(Button)findViewById(R.id.btnClear);
-        btnPlus=(Button)findViewById(R.id.btnPlus);
-        btnMin=(Button)findViewById(R.id.btnMin);
-        btnDot=(Button)findViewById(R.id.btnDot);
-
-
-
+                Button btnDiv=(Button)v.findViewById(R.id.btnDiv);
+                Button btnMul=(Button)v.findViewById(R.id.btnMul);
+                Button btnAns=(Button)v.findViewById(R.id.btnAns);
+                Button btnDot=(Button)v.findViewById(R.id.btnDot);
+                Button btnDel=(Button)v.findViewById(R.id.btnDel);
+                Button btnClear=(Button)v.findViewById(R.id.btnClear);
+                Button btnPlus=(Button)v.findViewById(R.id.btnPlus);
+                Button btnMin=(Button)v.findViewById(R.id.btnMin);
 
         View.OnClickListener btnList = new View.OnClickListener() {
             public  int temp;
@@ -128,12 +48,17 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
             @Override
 
 
+
             public void onClick(View v) {
+
+
+                double first=0;
+                double second=0;
 
                 switch(v.getId()){
                     case R.id.btn0:
                         if((Box.getText().length()==1)&(Box.getText().toString().contains("0"))==true){
-                         } else {Box.setText(Box.getText()+"0");}
+                        } else {Box.setText(Box.getText()+"0");}
                         break;
                     case R.id.btn1:
                         Box.setText(Box.getText()+"1");
@@ -165,16 +90,16 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
                     case R.id.btnDot:
 
                         if(Box.getText().length()!=0){
-                        if(Box.getText().toString().contains(".")==true){
+                            if(Box.getText().toString().contains(".")==true){
                             } else {Box.setText(Box.getText()+".");
-                        };
+                            };
                         };
 
                         break;
                     case R.id.btnClear:
-                            CharSequence Buff =Box.getText();
-                            if(Box.getText().length()<1){ Box.setText("1");}
-                            Box.setText(Buff.subSequence(0,(Box.getText().length()-1)));
+                        CharSequence Buff =Box.getText();
+                        if(Box.getText().length()<1){ Box.setText("1");}
+                        Box.setText(Buff.subSequence(0,(Box.getText().length()-1)));
                         break;
                     case R.id.btnDel:
                         Box.setText(null);
@@ -210,7 +135,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 
 
                                     check=1;
-                            } else {
+                                } else {
                                     Box.setText(String.valueOf((first*second)));
                                     first=first*second;
                                     check=1;
@@ -254,7 +179,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
                                 }
                                 break;
                             default:
-                            break;
+                                break;
                         }
                         break;
 
@@ -265,6 +190,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 
             }
         };
+
 
 
         btn0.setOnClickListener(btnList);
@@ -288,46 +214,11 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         btnPlus.setOnClickListener(btnList);
         btnMin.setOnClickListener(btnList);
 
-                    */
-
-//----------------------------Create Layout for Converter-----------------------------------
-
-
-
-    }
 
 
 
 
 
-    @Override
-    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-        Fragment frag1=new FragmentCalc();
-        frag1.isHidden();
-        Fragment frag2=new Fragment1();
-        frag2.isHidden();
-
-
-
-
-        if(tab.getPosition()==0){
-
-            getFragmentManager().beginTransaction().replace(R.id.fragmentCalc,frag1).commit();
-
-        }
-            else{
-
-                     getFragmentManager().beginTransaction().replace(R.id.fragment1,frag2).commit();}
-    }
-
-    @Override
-    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-
-
-    }
-
-    @Override
-    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-
+        return v;
     }
 }

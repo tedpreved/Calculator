@@ -7,242 +7,25 @@
 
 
 
-    <TabHost
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/tabHost"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true">
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical">
+    <fragment
+        android:id="@+id/fragmentCalc"
+        android:name="com.calculator.app.FragmentCalc"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        tools:layout="@layout/fragmentcalc"
+        />
 
-            <TabWidget
-                android:id="@android:id/tabs"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"></TabWidget>
 
-            <FrameLayout
-                android:id="@android:id/tabcontent"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
 
-                <RelativeLayout
-                    android:id="@+id/tab1"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
-                    <EditText
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:inputType="numberDecimal"
-                        android:ems="10"
-                        android:id="@+id/Box"
-                        android:layout_below="@+id/linearLayout"
-                        android:layout_marginTop="28dp"
-                        android:layout_alignWithParentIfMissing="false"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentLeft="true"
-                        android:editable="true"
-                        android:enabled="true"
-                        android:gravity="right"/>
-
-                    <TableLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignWithParentIfMissing="false"
-                        android:baselineAligned="false"
-                        android:id="@+id/tableLayout"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_marginLeft="30dp">
-
-                        <TableRow
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent">
-
-                            <Button
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:text="@string/btn7"
-                                android:id="@+id/btn7"
-                                android:layout_column="0"/>
-
-                            <Button
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:text="@string/btn8"
-                                android:id="@+id/btn8"
-                                android:layout_column="1" />
-
-                            <Button
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:text="@string/btn9"
-                                android:id="@+id/btn9"
-                                android:layout_column="2" />
-
-                            <Button
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:text="*"
-                                android:id="@+id/btnMul"
-                                android:layout_column="3" />
-
-                        </TableRow>
-
-                        <TableRow
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-
-                            <Button
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:text="@string/btn4"
-                                android:id="@+id/btn4"
-                                android:layout_column="0" />
-
-                            <Button
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:text="@string/btn5"
-                                android:id="@+id/btn5" />
-
-                            <Button
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:text="@string/btn6"
-                                android:id="@+id/btn6" />
-
-                            <Button
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:text="/"
-                                android:id="@+id/btnDiv" />
-
-                        </TableRow>
-
-                        <TableRow
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent">
-
-                            <TableLayout
-                                android:layout_span="4"
-                                android:layout_height="wrap_content">
-
-                                <TableRow
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="fill_parent">
-
-                                    <Button
-                                        android:layout_width="60dp"
-                                        android:layout_height="60dp"
-                                        android:text="@string/btn1"
-                                        android:id="@+id/btn1"
-                                        android:layout_gravity="top"
-                                        android:layout_column="0"/>
-
-                                    <Button
-                                        android:layout_width="60dp"
-                                        android:layout_height="60dp"
-                                        android:text="@string/btn2"
-                                        android:id="@+id/btn2"
-                                        android:layout_gravity="top"
-                                        android:layout_column="1" />
-
-                                    <Button
-                                        android:layout_width="60dp"
-                                        android:layout_height="60dp"
-                                        android:text="@string/btn3"
-                                        android:id="@+id/btn3"
-                                        android:layout_gravity="top" />
-
-                                    <Button
-                                        android:layout_width="65dp"
-                                        android:layout_height="60dp"
-                                        android:text="+"
-                                        android:id="@+id/btnPlus"
-                                        android:layout_gravity="top" />
-                                </TableRow>
-
-                            </TableLayout>
-
-                        </TableRow>
-
-                        <TableRow
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-
-                            <Button
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:text="."
-                                android:id="@+id/btnDot"
-                                android:layout_column="0" />
-
-                            <Button
-                                android:layout_width="wrap_content"
-                                android:layout_height="60dp"
-                                android:text="@string/btn0"
-                                android:id="@+id/btn0"
-                                android:layout_span="2"/>
-
-                            <Button
-                                android:layout_width="wrap_content"
-                                android:layout_height="60dp"
-                                android:text="-"
-                                android:id="@+id/btnMin" />
-                        </TableRow>
-                    </TableLayout>
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/tableLayout"
-                        android:layout_alignTop="@+id/tableLayout"
-                        android:layout_alignBottom="@+id/tableLayout">
-
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="60dp"
-                            android:text="C"
-                            android:id="@+id/btnClear"/>
-
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="60dp"
-                            android:text="DEL"
-                            android:id="@+id/btnDel" />
-
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:text="="
-                            android:id="@+id/btnAns" />
-                    </LinearLayout>
-                    </RelativeLayout>
-
-               <RelativeLayout
-                    android:id="@+id/tab2"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
-                    <fragment
-                        android:id="@+id/fragment1"
-                        android:name="com.calculator.app.Fragment1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        tools:layout="@layout/fragment1">
-
-                        </fragment>
-                    </RelativeLayout>
-            </FrameLayout>
-        </LinearLayout>
-    </TabHost>
+    <fragment
+        android:id="@+id/fragment1"
+        android:name="com.calculator.app.Fragment1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tools:layout="@layout/fragment1"/>
 
 
 </RelativeLayout>

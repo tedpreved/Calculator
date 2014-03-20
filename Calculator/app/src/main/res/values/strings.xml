@@ -28,6 +28,9 @@
     <string name="text_tab1">Calculator</string>
     <string name="text_tab2">Converter</string>
 
+    <string name="title_section1">Calculator</string>
+    <string name="title_section2">Converter</string>
+
 
     <string name="frag1_text">Fragment 1</string>
     <string name="frag2_text">Fragment 2</string>
