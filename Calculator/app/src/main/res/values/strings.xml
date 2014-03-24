@@ -39,12 +39,9 @@
 
 
     <string-array name="mas_list">
-        <item>carat</item>
         <item>gram</item>
-        <item>ounce</item>
-        <item>pound</item>
-        <item>kg</item>
-        <item>tona</item>
+        <item>kilogram</item>
+        <item>tonna</item>
     </string-array>
 
 </resources>

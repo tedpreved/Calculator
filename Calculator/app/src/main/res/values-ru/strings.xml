@@ -22,14 +22,11 @@
 
     <string name="btnMul">*</string>
 
-    <string name="text_tab1">Калькулятор</string>
-    <string name="text_tab2">Конвертер</string>
+    <string name="title_section1">Калькулятор</string>
+    <string name="title_section2">Конвертер</string>
 
     <string-array name="mas_list">
-        <item>карат</item>
         <item>грамм</item>
-        <item>унция</item>
-        <item>пунция</item>
         <item>килограмм</item>
         <item>тонна</item>
     </string-array>

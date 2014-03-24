@@ -20,19 +20,23 @@ public class ConverterFragment extends Fragment {
 
 	private static final String TAG = "myLogs";
 
+    public static int p1;
+    public static int p2;
+
+
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_convertor, null);
 
-		ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity()
-				.getApplicationContext(), android.R.layout.simple_spinner_item,
-				data);
-		adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(
+                getActivity().getApplicationContext(), R.array.mas_list,R.layout.item_row);
+		//adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter1.setDropDownViewResource(R.layout.item_dropdown);
 
-		ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getActivity()
-				.getApplicationContext(), android.R.layout.simple_spinner_item,
-				data);
-		adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		//ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getActivity()
+		//		.getApplicationContext(), android.R.layout.simple_spinner_item,
+		//		data);
+		//adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 		// ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 		// R.layout.row, R.id.textForSpinner,R.array.mas_list,);
@@ -42,16 +46,16 @@ public class ConverterFragment extends Fragment {
 		ImageButton buttonUP = (ImageButton) v.findViewById(R.id.buttonUP);
 		ImageButton buttonDOWN = (ImageButton) v.findViewById(R.id.buttonDOWN);
 
-		final EditText CBox1 = (EditText) v.findViewById(R.id.CBox1);
-		final EditText CBox2 = (EditText) v.findViewById(R.id.CBox_2);
+		final EditText tv1 = (EditText) v.findViewById(R.id.CBox1);
+		final EditText tv2 = (EditText) v.findViewById(R.id.CBox_2);
 
-		CBox1.setText("0");
-		CBox2.setText("0");
+		tv1.setText("0");
+		tv2.setText("0");
 
 		spinner1.setAdapter(adapter1);
 		spinner1.setSelection(1);
 
-		spinner2.setAdapter(adapter2);
+		spinner2.setAdapter(adapter1);
 		spinner1.setSelection(1);
 
 		View.OnClickListener btnConv = new View.OnClickListener() {
@@ -65,38 +69,28 @@ public class ConverterFragment extends Fragment {
 
 					Log.d(TAG, "Pressed buttonUP");
 
-					int p1 = spinner1.getSelectedItemPosition();
-					int p2 = spinner2.getSelectedItemPosition();
-
-					double numberFromEdit1 = Double.valueOf(CBox1.getText()
-							.toString());
-					double numberFromEdit2 = Double.valueOf(CBox2.getText()
-							.toString());
-
-					result = numberFromEdit2;
-					if (p2 > p1) { // Большее преобразуем в меньшее. умножаем от
-									// р1 до р2
-						for (int i = p1; p2 <= i; i++)
-							result *= mas[i];
-
-					}
-
-					if (p1 > p2) { // Меньшее преобразуем в большее. делим от р2
-									// до р1
-						for (int i = p1; i > p2; i--)
-							result /= mas[i];
-
-					}
-					if (p1 == p2) {
-						result = numberFromEdit2;
-					}
-
-					CBox1.setText(String.valueOf(result));
+					 p1 = spinner1.getSelectedItemPosition();
+                    //Log.d(TAG,String.valueOf(p1));
+					 p2 = spinner2.getSelectedItemPosition();
+                    //Log.d(TAG,String.valueOf(p1));
+                        tv1.setText(Convertor.convert(p1,p2, tv1.getText().toString(),tv2.getText().toString(),true));
+                    if(p1==p2){
+                        tv1.setText(tv2.getText());
+                    }
 
 					break;
 				}
 
 				case R.id.buttonDOWN:
+
+                    p1 = spinner1.getSelectedItemPosition();
+                    //Log.d(TAG,String.valueOf(p1));
+                    p2 = spinner2.getSelectedItemPosition();
+                    //Log.d(TAG,String.valueOf(p1));
+                    tv2.setText(Convertor.convert(p1,p2, tv1.getText().toString(),tv2.getText().toString(),false));
+                    if(p1==p2){
+                        tv2.setText(tv1.getText());
+                    }
 
 					break;
 				}
@@ -112,6 +106,7 @@ public class ConverterFragment extends Fragment {
 			public void onItemSelected(AdapterView<?> adapterView, View view,
 					int position, long l) {
 				Log.d(TAG, "Modify spin1");
+                Log.d(TAG,String.valueOf(spinner1.getSelectedItemPosition()));
 			}
 
 			@Override
@@ -124,6 +119,7 @@ public class ConverterFragment extends Fragment {
 			public void onItemSelected(AdapterView<?> adapterView, View view,
 					int i, long l) {
 				Log.d(TAG, "Modify spin2");
+                Log.d(TAG,String.valueOf(spinner2.getSelectedItemPosition()));
 			}
 
 			@Override

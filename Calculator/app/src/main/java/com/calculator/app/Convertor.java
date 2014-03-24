@@ -1,63 +1,71 @@
 package com.calculator.app;
 
+import android.util.Log;
+
 /**
  * Created by Monstr on 10.03.14.
  */
 
 public class Convertor {
 
-	final static double[] mas = { 1, 1000, 1000 };
+	final static double[] mas = { 1000, 1000, 1000};
 
-	public static String convert(int number1, int number2, String first,
-			String second, boolean chek) {
+    public static double ans=0.0;
 
-		String answer = null;
-		double ans = 0;
+    private static final String TAG = "myLogs";
 
-		double a = Double.valueOf(first);
-		double b = Double.valueOf(second);
+    private static  String answer;
 
-		if (number1 != number2) {
+	public static String convert(int number1, int number2, String mFirst,
+			String mSecond, boolean chek) {
 
-			if (chek) {
-				ans = b;
+        // number1, number2 позиция спиннера
+        // mFirst, mSecond числа из tv
+        //chek если true - то левая кнопка, если false то правая
 
-				if (number1 > number2) {
+        double Item1=Double.valueOf(mFirst);
+        double Item2=Double.valueOf(mSecond);
 
-					for (int i = number1; number2 <= i; i--)
-						ans /= mas[i];
-
-				} else {
-
-					for (int i = number1; i <= number2; i++)
-						ans *= mas[i];
-				}
-
-			} else {
-
-				ans = a;
-				if (number1 < number2) {
-
-					for (int i = number1; number2 <= i; i--)
-						ans /= mas[i];
-
-				} else {
-
-					for (int i = number1; i <= number2; i++)
-						ans *= mas[i];
-				}
-			}
-
-		} else {
-			if (chek) {
-				ans = b;
-			} else {
-				ans = a;
-			}
-
-		}
-
-		answer = Double.toString(ans);
+        if(chek==true){
+            //------------------------------Left Button-----------------------
+            if(number1>number2){
+                Log.d(TAG, String.valueOf(number1));
+                Log.d(TAG,String.valueOf(number2));
+                //------------Delenie---------
+                ans=Item2;
+                for(;number1!=number2;number1--){
+                    ans=ans/mas[number1];
+                }
+            }
+            if(number1<number2){
+                Log.d(TAG, String.valueOf(number1));
+                Log.d(TAG,String.valueOf(number2));
+                //--------------------------Umnogenie-------------------------
+                ans=Item2;
+                for(;number2!=number1;number1++){
+                    ans*=mas[number1];
+                } }
+        } else {
+            if(number1<number2){
+                Log.d(TAG, String.valueOf(number1));
+                Log.d(TAG,String.valueOf(number2));
+                //------------Delenie---------
+                ans=Item1;
+                for(;number2!=number1;number2--){
+                    ans=ans/mas[number2];
+                }
+            }
+            if(number1>number2){
+                Log.d(TAG, String.valueOf(number1));
+                Log.d(TAG,String.valueOf(number2));
+                //--------------------------Umnogenie-------------------------
+                ans=Item1;
+                for(;number1!=number2;number2++){
+                    ans*=mas[number2];
+                }
+            }
+        }
+        answer=Double.toString(ans);
 		return answer;
 	}
 

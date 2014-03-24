@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.view.Menu;
 
 public class MainActivity extends Activity implements ActionBar.TabListener {
 
@@ -17,7 +16,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 		
-		outState.putInt(STATE_SELECTED_NAVIGATION_ITEM, getActionBar().getSelectedNavigationIndex());
+		outState.putInt(STATE_SELECTED_NAVIGATION_ITEM,getActionBar().getSelectedNavigationIndex());
 		
 		getFragmentManager().putFragment(outState, CalculatorFragment.class.getSimpleName(), mFragments[0]);
 		getFragmentManager().putFragment(outState, ConverterFragment.class.getSimpleName(), mFragments[1]);
