@@ -7,6 +7,9 @@ import android.util.Log;
  */
 
 public class Convertor {
+	
+	private Convertor() {
+	}
 
 	final static double[] mas = { 1000, 1000, 1000};
 

@@ -15,31 +15,48 @@ public class CalculatorFragment extends Fragment {
 
 	private TextView tvBox;
 
-	private static double mFirst = 0;
-	private static double mSecond = 0;
+	private double mFirst = 0;
+	private double mSecond = 0;
+	private int mTemp;
+	private int mCheckRepeat;
+
+	public static final String TAG_FOR_TEMP = "TEMP";
+	public static final String TAG_FOR_CHECKREPEAT = "CHECKREPEAT";
+	public static final String TAG_FOR_FIRST = "FIRST";
+	public static final String TAG_FOR_SECOND = "SECOND";
 
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
-		
+
+		outState.putInt(TAG_FOR_TEMP, mTemp);
+		outState.putInt(TAG_FOR_CHECKREPEAT, mCheckRepeat);
+		outState.putDouble(TAG_FOR_FIRST, mFirst);
+		outState.putDouble(TAG_FOR_SECOND, mSecond);
 	}
-	
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+
+		if (savedInstanceState != null) {
+
+			mFirst = savedInstanceState.getDouble(TAG_FOR_FIRST);
+			mSecond = savedInstanceState.getDouble(TAG_FOR_SECOND);
+			mTemp = savedInstanceState.getInt(TAG_FOR_TEMP);
+			mCheckRepeat = savedInstanceState.getInt(TAG_FOR_CHECKREPEAT);
+
+		}
+
+	}
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_calc, null);
 
 		tvBox = (TextView) v.findViewById(R.id.Box);
-
-		
-//		double i = 0.0;
-//		try {
-//			i = Double.valueOf(tvBox.getText().toString());
-//		} catch (NumberFormatException e) {
-//		}
-//		if (i != 0) {
-//			tvBox.setText(String.valueOf(i));
-//		}
 
 		Button btn0 = (Button) v.findViewById(R.id.btn0);
 		Button btn1 = (Button) v.findViewById(R.id.btn1);
@@ -51,7 +68,7 @@ public class CalculatorFragment extends Fragment {
 		Button btn7 = (Button) v.findViewById(R.id.btn7);
 		Button btn8 = (Button) v.findViewById(R.id.btn8);
 		Button btn9 = (Button) v.findViewById(R.id.btn9);
-
+		
 		Button btnDiv = (Button) v.findViewById(R.id.btnDiv);
 		Button btnMul = (Button) v.findViewById(R.id.btnMul);
 		Button btnAns = (Button) v.findViewById(R.id.btnAns);
@@ -62,8 +79,6 @@ public class CalculatorFragment extends Fragment {
 		Button btnMin = (Button) v.findViewById(R.id.btnMin);
 
 		View.OnClickListener btnList = new View.OnClickListener() {
-			public int temp;
-			public int checkRepeat;
 
 			@Override
 			public void onClick(View v) {
@@ -110,9 +125,7 @@ public class CalculatorFragment extends Fragment {
 						} else {
 							tvBox.setText(tvBox.getText() + ".");
 						}
-						;
 					}
-					;
 
 					break;
 				case R.id.btnDel:
@@ -125,81 +138,85 @@ public class CalculatorFragment extends Fragment {
 					break;
 				case R.id.btnClear:
 					tvBox.setText(null);
-                    mFirst=0;
-                    mSecond=0;
-					checkRepeat = 0;
+					mFirst = 0;
+					mSecond = 0;
+					mCheckRepeat = 0;
 					break;
 				case R.id.btnMul:
 
 					mFirst = Double.valueOf(tvBox.getText().toString());
-					temp = 1;
+					mTemp = 1;
 					tvBox.setText(null);
 					break;
 				case R.id.btnDiv:
 					mFirst = Double.valueOf(tvBox.getText().toString());
-					temp = 2;
+					mTemp = 2;
 					tvBox.setText(null);
 					break;
 				case R.id.btnPlus:
 					mFirst = Double.valueOf(tvBox.getText().toString());
-					temp = 3;
+					mTemp = 3;
 					tvBox.setText(null);
 					break;
 				case R.id.btnMin:
 					mFirst = Double.valueOf(tvBox.getText().toString());
-					temp = 4;
+					mTemp = 4;
 					tvBox.setText(null);
 					break;
 				case R.id.btnAns:
-					switch (temp) {
+					switch (mTemp) {
 					case 1:
-						if (checkRepeat == 0) {
-							mSecond = Double.valueOf(tvBox.getText().toString());
+						if (mCheckRepeat == 0) {
+							mSecond = Double
+									.valueOf(tvBox.getText().toString());
 							tvBox.setText(String.valueOf((mFirst * mSecond)));
 							mFirst = mFirst * mSecond;
 
-							checkRepeat = 1;
+							mCheckRepeat = 1;
 						} else {
 							tvBox.setText(String.valueOf((mFirst * mSecond)));
 							mFirst = mFirst * mSecond;
-							checkRepeat = 1;
+							mCheckRepeat = 1;
 						}
 						break;
 					case 2:
-						if (checkRepeat == 0) {
-							mSecond = Double.valueOf(tvBox.getText().toString());
+						if (mCheckRepeat == 0) {
+							mSecond = Double
+									.valueOf(tvBox.getText().toString());
 							tvBox.setText(String.valueOf((mFirst / mSecond)));
 							mFirst = mFirst / mSecond;
-							checkRepeat = 1;
+							mCheckRepeat = 1;
 						} else {
 							tvBox.setText(String.valueOf((mFirst / mSecond)));
 							mFirst = mFirst / mSecond;
-							checkRepeat = 1;
+							mCheckRepeat = 1;
 						}
 						break;
 					case 3:
-						if (checkRepeat == 0) {
-							mSecond = Double.valueOf(tvBox.getText().toString());
+						if (mCheckRepeat == 0) {
+							mSecond = Double
+									.valueOf(tvBox.getText().toString());
 							tvBox.setText(String.valueOf(mFirst + mSecond));
 							mFirst = mFirst + mSecond;
-							checkRepeat = 1;
+							mCheckRepeat = 1;
 						} else {
 							tvBox.setText(String.valueOf(mFirst + mSecond));
 							mFirst = mFirst + mSecond;
 
-							checkRepeat = 1;
+							mCheckRepeat = 1;
 						}
 						break;
 					case 4:
-						if (checkRepeat == 0) {
-							mSecond = Double.valueOf(tvBox.getText().toString());
+						if (mCheckRepeat == 0) {
+							mSecond = Double
+									.valueOf(tvBox.getText().toString());
 							tvBox.setText(String.valueOf((mFirst - mSecond)));
 							mFirst = mFirst - mSecond;
-							checkRepeat = 1;
+							mCheckRepeat = 1;
 						} else {
 							tvBox.setText(String.valueOf((mFirst - mSecond)));
 							mFirst = mFirst - mSecond;
-							checkRepeat = 1;
+							mCheckRepeat = 1;
 						}
 						break;
 					default:
@@ -215,26 +232,26 @@ public class CalculatorFragment extends Fragment {
 			}
 		};
 
-		        btn0.setOnClickListener(btnList);
-		        btn1.setOnClickListener(btnList);
-		        btn2.setOnClickListener(btnList);
-		        btn3.setOnClickListener(btnList);
-		        btn4.setOnClickListener(btnList);
-		        btn5.setOnClickListener(btnList);
-		        btn6.setOnClickListener(btnList);
-		        btn7.setOnClickListener(btnList);
-		        btn8.setOnClickListener(btnList);
-		        btn9.setOnClickListener(btnList);
+		btn0.setOnClickListener(btnList);
+		btn1.setOnClickListener(btnList);
+		btn2.setOnClickListener(btnList);
+		btn3.setOnClickListener(btnList);
+		btn4.setOnClickListener(btnList);
+		btn5.setOnClickListener(btnList);
+		btn6.setOnClickListener(btnList);
+		btn7.setOnClickListener(btnList);
+		btn8.setOnClickListener(btnList);
+		btn9.setOnClickListener(btnList);
 
-		        btnDel.setOnClickListener(btnList);
-		        btnClear.setOnClickListener(btnList);
-		        btnAns.setOnClickListener(btnList);
-		        btnDot.setOnClickListener(btnList);
+		btnDel.setOnClickListener(btnList);
+		btnClear.setOnClickListener(btnList);
+		btnAns.setOnClickListener(btnList);
+		btnDot.setOnClickListener(btnList);
 
-		        btnMul.setOnClickListener(btnList);
-		        btnDiv.setOnClickListener(btnList);
-		        btnPlus.setOnClickListener(btnList);
-		        btnMin.setOnClickListener(btnList);
+		btnMul.setOnClickListener(btnList);
+		btnDiv.setOnClickListener(btnList);
+		btnPlus.setOnClickListener(btnList);
+		btnMin.setOnClickListener(btnList);
 
 		return v;
 	}
