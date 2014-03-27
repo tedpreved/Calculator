@@ -2,10 +2,13 @@ package com.calculator.app;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.app.ActionBar.Tab;
 import android.os.Bundle;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.support.v4.app.FragmentManager;
 
 public class MainActivity2 extends Activity implements ActionBar.TabListener {
 
@@ -27,7 +30,19 @@ public class MainActivity2 extends Activity implements ActionBar.TabListener {
 
 		setContentView(R.layout.activity_main2);
 		
+		
 		mViewPager = (ViewPager) findViewById(R.id.viewpager);
+		
+		PagerAdapter pAdapter =new TabsPagerAdapter(getFragmentManager());
+		mViewPager.setAdapter(pAdapter);
+		mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
+			@Override
+            public void onPageSelected(int position) {
+                // When swiping between pages, select the
+                // corresponding tab.
+                getActionBar().setSelectedNavigationItem(position);
+            }
+		});
 		
 		final ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -36,6 +51,32 @@ public class MainActivity2 extends Activity implements ActionBar.TabListener {
 				.setTabListener(this));
 		actionBar.addTab(actionBar.newTab().setText(R.string.title_section2)
 				.setTabListener(this));
+		
+		ActionBar.TabListener tabListener= new ActionBar.TabListener() {
+			
+			@Override
+			public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+				// TODO Auto-generated method stub
+				mViewPager.setCurrentItem(tab.getPosition());
+				
+			}
+			
+			@Override
+			public void onTabSelected(Tab tab, FragmentTransaction ft) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onTabReselected(Tab tab, FragmentTransaction ft) {
+				// TODO Auto-generated method stub
+				
+			}
+		};
+		
+		
+		
+		
 	}
 	
 	@Override
@@ -50,6 +91,7 @@ public class MainActivity2 extends Activity implements ActionBar.TabListener {
 	
 	@Override
 	public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+		mViewPager.setCurrentItem(tab.getPosition(),true);
 		
 	}
 
